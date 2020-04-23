@@ -1,0 +1,17 @@
+
+.fake-input {
+	position: relative;
+}
+
+.fake-input input {
+	border: none: background:#fff;
+	display: block;
+	width: 100%;
+	box-sizing: border-box
+}
+
+.fake-input img {
+	position: absolute;
+	top: 4px;
+	right: 5px
+}

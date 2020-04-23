@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nike.app.dq.boot.data.mapper.UserMapper">
+	<sql id="userProfileColumns">
+		<![CDATA[
+			a.USER_ID AS USER_ID,
+			a.USER_NAME AS USER_NAME,
+			a.USER_PASSWORD AS USER_PASSWORD,
+			c.USER_ROLE_ID AS USER_ROLE_ID,
+			c.ROLE_NAME AS ROLE_NAME,
+			e.USER_ROLE_PERMISSION_ID AS USER_ROLE_PERMISSION_ID,
+			e.PERMISSION AS PERMISSION
+		]]>
+	</sql>
+	<sql id="userProfileFromJoin">
+		<![CDATA[
+			FROM DQ_USER_PROFILE_TAB a
+			INNER JOIN DQ_USER_ROLE_MAPPING_TAB b ON a.USER_ID = b.USER_ID
+			INNER JOIN DQ_USER_ROLE_TAB c ON b.USER_ROLE_ID = c.USER_ROLE_ID
+			INNER JOIN DQ_USER_ROLE_PERMISSION_MAPPING_TAB d ON c.USER_ROLE_ID = d.USER_ROLE_ID
+			INNER JOIN DQ_USER_ROLE_PERMISSION_TAB e ON d.USER_ROLE_PERMISSION_ID = e.USER_ROLE_PERMISSION_ID
+		]]>
+	</sql>
+	<resultMap id="detailedUserProfileResultMap" type="UserProfile">
+		<id property="userId" column="USER_ID" />
+		<result property="userName" column="USER_NAME" />
+		<result property="userPassword" column="USER_PASSWORD" />
+		<collection property="roles" ofType="UserRole" javaType="ArrayList" column="USER_ID">
+			<id property="userRoleId" column="USER_ROLE_ID" />
+			<result property="roleName" column="ROLE_NAME" />
+			<collection property="permissions" ofType="RolePermission" javaType="ArrayList" column="USER_ROLE_ID">
+				<id property="userRolePermissionId" column="USER_ROLE_PERMISSION_ID" />
+				<result property="permission" column="PERMISSION" />
+			</collection>
+		</collection>
+	</resultMap>
+	<select id="findByUserName" resultMap="detailedUserProfileResultMap">
+		<![CDATA[ select ]]>
+		<include refid="userProfileColumns" />
+		<include refid="userProfileFromJoin" />
+		<![CDATA[ WHERE a.USER_NAME = #{username}; ]]>
+	</select>
+	<select id="findByUserId" resultMap="detailedUserProfileResultMap">
+		<![CDATA[ select ]]>
+		<include refid="userProfileColumns" />
+		<include refid="userProfileFromJoin" />
+		<![CDATA[ WHERE a.USER_ID = #{userId}; ]]>
+	</select>
+
+</mapper>

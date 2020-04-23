@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nike.app.dq.boot.data.mapper.RuleR33mcCaseMapper">
+	<sql id="ruleR33mcCaseColumns">
+		<![CDATA[
+			r.RULE_CASE_ID as RULE_CASE_ID, 
+			r.RULE_CASE_NAME as RULE_CASE_NAME, 
+			r.RULE_CASE_OWNER as RULE_CASE_OWNER, 
+			r.RULE_CASE_BUSINESS_FUNCTION as RULE_CASE_BUSINESS_FUNCTION, 
+			r.RULE_CASE_DESCRIPTION as RULE_CASE_DESCRIPTION, 
+			c1.CONNECTION_ID as SRC_CONNECTION_ID, 
+			c1.CONNECTION_NAME as SRC_CONNECTION_NAME, 
+			c1.CONNECTION_DESCRIPTION as SRC_CONNECTION_DESCRIPTION, 
+			c1.CONNECTION_SERVER_TYPE as SRC_CONNECTION_SERVER_TYPE, 
+			c1.CONNECTION_SERVER_HOST as SRC_CONNECTION_SERVER_HOST, 
+			c1.CONNECTION_DB_LINK as SRC_CONNECTION_DB_LINK, 
+			c1.CONNECTION_DB_SCHEMA as SRC_CONNECTION_DB_SCHEMA, 
+			c1.CONNECTION_CREATED_BY as SRC_CONNECTION_CREATED_BY, 
+			c1.CONNECTION_CREATED_DATETIME as SRC_CONNECTION_CREATED_DATETIME, 
+			r.RULE_CASE_SOURCE_TABLE as RULE_CASE_SOURCE_TABLE, 
+			r.RULE_CASE_SOURCE_FIELD as RULE_CASE_SOURCE_FIELD, 
+			r.RULE_CASE_SOURCE_CONDITION_FIELD as RULE_CASE_SOURCE_CONDITION_FIELD, 
+			c2.CONNECTION_ID as TGT_CONNECTION_ID, 
+			c2.CONNECTION_NAME as TGT_CONNECTION_NAME, 
+			c2.CONNECTION_DESCRIPTION as TGT_CONNECTION_DESCRIPTION, 
+			c2.CONNECTION_SERVER_TYPE as TGT_CONNECTION_SERVER_TYPE, 
+			c2.CONNECTION_SERVER_HOST as TGT_CONNECTION_SERVER_HOST, 
+			c2.CONNECTION_DB_LINK as TGT_CONNECTION_DB_LINK, 
+			c2.CONNECTION_DB_SCHEMA as TGT_CONNECTION_DB_SCHEMA, 
+			c2.CONNECTION_CREATED_BY as TGT_CONNECTION_CREATED_BY, 
+			c2.CONNECTION_CREATED_DATETIME as TGT_CONNECTION_CREATED_DATETIME, 
+			r.RULE_CASE_TARGET_TABLE as RULE_CASE_TARGET_TABLE, 
+			r.RULE_CASE_TARGET_FIELD as RULE_CASE_TARGET_FIELD, 
+			r.RULE_CASE_TARGET_CONDITION_FIELD as RULE_CASE_TARGET_CONDITION_FIELD, 
+			r.RULE_CASE_LAST_MODIFIED_BY as RULE_CASE_LAST_MODIFIED_BY, 
+			r.RULE_CASE_LAST_MODIFIED_DATE as RULE_CASE_LAST_MODIFIED_DATE, 
+			rh.RULE_CASE_RUN_ID as RULE_CASE_RUN_ID, 
+			rh.RULE_CASE_RUN_RESULT as RULE_CASE_RUN_RESULT, 
+			rh.RULE_CASE_SRC_MEASURE_VAL as RULE_CASE_SRC_MEASURE_VAL, 
+			rh.RULE_CASE_TGT_MEASURE_VAL as RULE_CASE_TGT_MEASURE_VAL, 
+			rh.RULE_CASE_DIFF_PCNT as RULE_CASE_DIFF_PCNT, 
+			rh.RULE_CASE_TOLERANCE as RULE_CASE_TOLERANCE, 
+			rh.RULE_CASE_RUN_START_DATE as RULE_CASE_RUN_START_DATE, 
+			rh.RULE_CASE_RUN_END_DATE as RULE_CASE_RUN_END_DATE 
+		]]>
+	</sql>
+	<resultMap id="detailedRuleR33mcCaseResultMap" type="RuleR33mcCase">
+		<id property="ruleCaseId" column="RULE_CASE_ID" />
+		<result property="ruleCaseName" column="RULE_CASE_NAME" />
+		<result property="ruleCaseOwner" column="RULE_CASE_OWNER" />
+		<result property="ruleCaseBusinessFunction" column="RULE_CASE_BUSINESS_FUNCTION" />
+		<result property="ruleCaseDescription" column="RULE_CASE_DESCRIPTION" />
+		<result property="ruleCaseSourceTable" column="RULE_CASE_SOURCE_TABLE" />
+		<result property="ruleCaseSourceField" column="RULE_CASE_SOURCE_FIELD" />
+		<result property="ruleCaseSourceConditionField" column="RULE_CASE_SOURCE_CONDITION_FIELD" />
+		<result property="ruleCaseTargetTable" column="RULE_CASE_TARGET_TABLE" />
+		<result property="ruleCaseTargetField" column="RULE_CASE_TARGET_FIELD" />
+		<result property="ruleCaseTargetConditionField" column="RULE_CASE_TARGET_CONDITION_FIELD" />
+		<result property="ruleCaseLastModifiedBy" column="RULE_CASE_LAST_MODIFIED_BY" />
+		<result property="ruleCaseLastModifiedDate" column="RULE_CASE_LAST_MODIFIED_DATE" />
+		<association property="connectionSrc" resultMap="com.nike.app.dq.boot.data.mapper.DsConnectionMapper.detailedDsConnectionResultMap" columnPrefix="SRC_" />
+		<association property="connectionTgt" resultMap="com.nike.app.dq.boot.data.mapper.DsConnectionMapper.detailedDsConnectionResultMap" columnPrefix="TGT_" />
+		<collection property="runHistories" ofType="RuleR33mcCaseRunHistory" javaType="ArrayList" column="RULE_CASE_ID">
+			<id property="ruleCaseRunId" column="RULE_CASE_RUN_ID" />
+			<result property="ruleCaseRunResult" column="RULE_CASE_RUN_RESULT" />
+			<result property="ruleCaseSourceMeasureValue" column="RULE_CASE_SRC_MEASURE_VAL" />
+			<result property="ruleCaseTargetMeasureValue" column="RULE_CASE_TGT_MEASURE_VAL" />
+			<result property="ruleCaseDiffPcnt" column="RULE_CASE_DIFF_PCNT" />
+			<result property="ruleCaseTolerance" column="RULE_CASE_TOLERANCE" />
+			<result property="ruleCaseRunStartDate" column="RULE_CASE_RUN_START_DATE" />
+			<result property="ruleCaseRunEndDate" column="RULE_CASE_RUN_END_DATE" />
+		</collection>
+	</resultMap>
+	<select id="findAll" resultMap="detailedRuleR33mcCaseResultMap">
+		<![CDATA[ select ]]>
+			<include refid="ruleR33mcCaseColumns" />
+		<![CDATA[
+			from DQ_RULE_R33MC_CASE_TAB r 
+			inner join DQ_DB_CONNECTION_TAB c1 on c1.CONNECTION_ID = r.SRC_CONNECTION_ID 
+			inner join DQ_DB_CONNECTION_TAB c2 on c2.CONNECTION_ID = r.TGT_CONNECTION_ID 
+			inner join DQ_RULE_R33MC_CASE_RUN_HISTORY_TAB rh ON r.RULE_CASE_ID = rh.RULE_CASE_ID 
+			order by r.RULE_CASE_ID asc, rh.RULE_CASE_RUN_ID desc;
+		]]>
+	</select>
+	<select id="findById" resultMap="detailedRuleR33mcCaseResultMap">
+		<![CDATA[ select ]]>
+			<include refid="ruleR33mcCaseColumns" />
+		<![CDATA[
+			from DQ_RULE_R33MC_CASE_TAB r 
+			inner join DQ_DB_CONNECTION_TAB c1 on c1.CONNECTION_ID = r.SRC_CONNECTION_ID 
+			inner join DQ_DB_CONNECTION_TAB c2 on c2.CONNECTION_ID = r.TGT_CONNECTION_ID 
+			left join DQ_RULE_R33MC_CASE_RUN_HISTORY_TAB rh ON r.RULE_CASE_ID = rh.RULE_CASE_ID 
+			where r.RULE_CASE_ID = #{id};
+		]]>
+	</select>
+	<select id="findByRuleCaseName" resultMap="detailedRuleR33mcCaseResultMap">
+		<![CDATA[ select ]]>
+			<include refid="ruleR33mcCaseColumns" />
+		<![CDATA[
+			from DQ_RULE_R33MC_CASE_TAB r 
+			inner join DQ_DB_CONNECTION_TAB c1 on c1.CONNECTION_ID = r.SRC_CONNECTION_ID 
+			inner join DQ_DB_CONNECTION_TAB c2 on c2.CONNECTION_ID = r.TGT_CONNECTION_ID 
+			left join DQ_RULE_R33MC_CASE_RUN_HISTORY_TAB rh ON r.RULE_CASE_ID = rh.RULE_CASE_ID 
+			where r.RULE_CASE_NAME = #{ruleCaseName};
+		]]>
+	</select>
+	<update id="updateOne">
+		<![CDATA[
+			update DQ_RULE_R33MC_CASE_TAB 
+			set RULE_CASE_NAME = #{ruleCaseName}, 
+				RULE_CASE_OWNER = #{ruleCaseOwner}, 
+				RULE_CASE_BUSINESS_FUNCTION = #{ruleCaseBusinessFunction}, 
+				RULE_CASE_DESCRIPTION = #{ruleCaseDescription}, 
+				RULE_CASE_SOURCE_TABLE = #{ruleCaseSourceTable}, 
+				RULE_CASE_SOURCE_FIELD = #{ruleCaseSourceField}, 
+				RULE_CASE_SOURCE_CONDITION_FIELD = #{ruleCaseSourceConditionField}, 
+				RULE_CASE_TARGET_TABLE = #{ruleCaseTargetTable}, 
+				RULE_CASE_TARGET_FIELD = #{ruleCaseTargetField}, 
+				RULE_CASE_TARGET_CONDITION_FIELD = #{ruleCaseTargetConditionField}
+			where RULE_CASE_ID = #{ruleCaseId};
+		]]>
+	</update>
+	<insert id="insertOne">
+		<![CDATA[
+			insert into DQ_RULE_R33MC_CASE_TAB (RULE_CASE_NAME, RULE_CASE_OWNER, RULE_CASE_BUSINESS_FUNCTION, RULE_CASE_DESCRIPTION, SRC_CONNECTION_ID, RULE_CASE_SOURCE_TABLE, RULE_CASE_SOURCE_FIELD, RULE_CASE_SOURCE_CONDITION_FIELD, TGT_CONNECTION_ID, RULE_CASE_TARGET_TABLE, RULE_CASE_TARGET_FIELD, RULE_CASE_TARGET_CONDITION_FIELD, RULE_CASE_LAST_MODIFIED_BY) 
+			values (#{ruleCaseName}, #{ruleCaseOwner}, #{ruleCaseBusinessFunction}, #{ruleCaseDescription}, #{connectionSrcId}, #{ruleCaseSourceTable}, #{ruleCaseSourceField}, #{ruleCaseSourceConditionField}, #{connectionTgtId}, #{ruleCaseTargetTable}, #{ruleCaseTargetField}, #{ruleCaseTargetConditionField}, #{ruleCaseLastModifiedBy});
+		]]>
+	</insert>
+	<delete id="deleteByRuleCaseId">
+		<![CDATA[
+			delete from DQ_RULE_R33MC_CASE_TAB where RULE_CASE_ID = #{ruleCaseId};
+		]]>
+	</delete>
+	<delete id="deleteRunHistoryByCaseId">
+		<![CDATA[
+			delete from DQ_RULE_R33MC_CASE_RUN_HISTORY_TAB where RULE_CASE_ID = #{caseId};
+		]]>
+	</delete>
+	<resultMap id="detailedR33mcExecResultMap" type="R33mcExecResult">
+		<result property="execResult" column="EXEC_RESULT" />
+	</resultMap>
+	<select id="execQueryR33mcVerify" resultMap="detailedR33mcExecResultMap">
+		<![CDATA[ select convert(bigint, sum(${field})) as EXEC_RESULT from ${table} ]]>
+		<if test="conditionField != ''">
+		<![CDATA[ where ${conditionField}; ]]>
+		</if>
+		<if test="conditionField == ''">
+		<![CDATA[ ; ]]>
+		</if>
+	</select>
+	<insert id="insertHistoryOne">
+		<![CDATA[
+			insert into DQ_RULE_R33MC_CASE_RUN_HISTORY_TAB (RULE_CASE_ID, RULE_CASE_RUN_RESULT, RULE_CASE_SRC_MEASURE_VAL, RULE_CASE_TGT_MEASURE_VAL, RULE_CASE_DIFF_PCNT, RULE_CASE_TOLERANCE, RULE_CASE_RUN_START_DATE, RULE_CASE_RUN_END_DATE) 
+			values (#{ruleCaseId}, #{ruleCaseRunResult}, #{ruleCaseSourceMeasureValue}, #{ruleCaseTargetMeasureValue}, #{ruleCaseDiffPcnt}, #{ruleCaseTolerance}, #{ruleCaseRunStartDate}, #{ruleCaseRunEndDate});
+		]]>
+	</insert>
+
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nike.app.dq.boot.data.mapper.DsConnectionMapper">
+	<sql id="dsConnectionColumns">
+		<![CDATA[
+			c.CONNECTION_ID as CONNECTION_ID, 
+			c.CONNECTION_NAME as CONNECTION_NAME, 
+			c.CONNECTION_DESCRIPTION as CONNECTION_DESCRIPTION, 
+			c.CONNECTION_SERVER_TYPE as CONNECTION_SERVER_TYPE, 
+			c.CONNECTION_SERVER_HOST as CONNECTION_SERVER_HOST, 
+			c.CONNECTION_DB_LINK as CONNECTION_DB_LINK, 
+			c.CONNECTION_DB_SCHEMA as CONNECTION_DB_SCHEMA, 
+			c.CONNECTION_CREATED_BY as CONNECTION_CREATED_BY, 
+			c.CONNECTION_CREATED_DATETIME as CONNECTION_CREATED_DATETIME 
+		]]>
+	</sql>
+	<resultMap id="detailedDsConnectionResultMap" type="DsConnection">
+		<id property="connectionId" column="CONNECTION_ID" />
+		<result property="connectionName" column="CONNECTION_NAME" />
+		<result property="connectionDescription" column="CONNECTION_DESCRIPTION" />
+		<result property="connectionServerType" column="CONNECTION_SERVER_TYPE" />
+		<result property="connectionServerHost" column="CONNECTION_SERVER_HOST" />
+		<result property="connectionDbLink" column="CONNECTION_DB_LINK" />
+		<result property="connectionDbSchema" column="CONNECTION_DB_SCHEMA" />
+		<result property="connectionCreatedBy" column="CONNECTION_CREATED_BY" />
+		<result property="connectionCreatedDatetime" column="CONNECTION_CREATED_DATETIME" />
+	</resultMap>
+	<select id="findAll" resultMap="detailedDsConnectionResultMap">
+		<![CDATA[ select ]]>
+			<include refid="dsConnectionColumns" />
+		<![CDATA[ from DQ_DB_CONNECTION_TAB c order by c.CONNECTION_ID ]]>
+	</select>
+	<select id="findByConnectionName" resultMap="detailedDsConnectionResultMap">
+		<![CDATA[ select ]]>
+			<include refid="dsConnectionColumns" />
+		<![CDATA[
+			from DQ_DB_CONNECTION_TAB c where c.CONNECTION_NAME = #{connectionName};
+		]]>
+	</select>
+	<select id="findById" resultMap="detailedDsConnectionResultMap">
+		<![CDATA[ select ]]>
+			<include refid="dsConnectionColumns" />
+		<![CDATA[
+			from DQ_DB_CONNECTION_TAB c where c.CONNECTION_ID = #{connectionId};
+		]]>
+	</select>
+
+</mapper>

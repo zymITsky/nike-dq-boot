@@ -1,0 +1,4 @@
+
+table.dataTable th.select-checkbox::before {
+	display: none;
+}

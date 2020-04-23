@@ -1,0 +1,137 @@
+
+use nikehealthchecker;
+
+-- ====================
+-- DQ_USER_PROFILE_TAB
+-- ====================
+
+INSERT INTO DQ_USER_PROFILE_TAB (USER_NAME, USER_PASSWORD) VALUES ('test', lower(convert(varchar (32), hashbytes('MD5', 'password'), 2)));
+INSERT INTO DQ_USER_PROFILE_TAB (USER_NAME, USER_PASSWORD) VALUES ('test1', lower(convert(varchar (32), hashbytes('MD5', 'password'), 2)));
+INSERT INTO DQ_USER_PROFILE_TAB (USER_NAME, USER_PASSWORD) VALUES ('test2', lower(convert(varchar (32), hashbytes('MD5', 'password'), 2)));
+
+-- =================
+-- DQ_USER_ROLE_TAB
+-- =================
+
+INSERT INTO DQ_USER_ROLE_TAB (ROLE_NAME) VALUES ('suser');
+INSERT INTO DQ_USER_ROLE_TAB (ROLE_NAME) VALUES ('user');
+INSERT INTO DQ_USER_ROLE_TAB (ROLE_NAME) VALUES ('admin');
+
+-- =========================
+-- DQ_USER_ROLE_MAPPING_TAB
+-- =========================
+
+INSERT INTO DQ_USER_ROLE_MAPPING_TAB (USER_ID, USER_ROLE_ID) VALUES (1, 1);
+INSERT INTO DQ_USER_ROLE_MAPPING_TAB (USER_ID, USER_ROLE_ID) VALUES (2, 2);
+INSERT INTO DQ_USER_ROLE_MAPPING_TAB (USER_ID, USER_ROLE_ID) VALUES (3, 3);
+
+-- ============================
+-- DQ_USER_ROLE_PERMISSION_TAB
+-- ============================
+
+INSERT INTO DQ_USER_ROLE_PERMISSION_TAB (PERMISSION) VALUES ('suser:*');
+INSERT INTO DQ_USER_ROLE_PERMISSION_TAB (PERMISSION) VALUES ('user:*');
+INSERT INTO DQ_USER_ROLE_PERMISSION_TAB (PERMISSION) VALUES ('admin:*');
+
+-- ====================================
+-- DQ_USER_ROLE_PERMISSION_MAPPING_TAB
+-- ====================================
+
+INSERT INTO DQ_USER_ROLE_PERMISSION_MAPPING_TAB (USER_ROLE_ID, USER_ROLE_PERMISSION_ID) VALUES (1, 1);
+INSERT INTO DQ_USER_ROLE_PERMISSION_MAPPING_TAB (USER_ROLE_ID, USER_ROLE_PERMISSION_ID) VALUES (1, 2);
+INSERT INTO DQ_USER_ROLE_PERMISSION_MAPPING_TAB (USER_ROLE_ID, USER_ROLE_PERMISSION_ID) VALUES (1, 3);
+INSERT INTO DQ_USER_ROLE_PERMISSION_MAPPING_TAB (USER_ROLE_ID, USER_ROLE_PERMISSION_ID) VALUES (2, 2);
+INSERT INTO DQ_USER_ROLE_PERMISSION_MAPPING_TAB (USER_ROLE_ID, USER_ROLE_PERMISSION_ID) VALUES (3, 3);
+
+-- #######################################################################################################################################################
+
+-- =====================
+-- DQ_DB_CONNECTION_TAB
+-- =====================
+
+INSERT INTO DQ_DB_CONNECTION_TAB VALUES ('DW_P024_CRB_T', 'P024 Main DW with CRB_T', 'MSSQLSERVER', 'R4WAPPP024', 'LOCAL_HOST', 'CRB_T', 'TEST', getdate());
+INSERT INTO DQ_DB_CONNECTION_TAB VALUES ('DW_P024_APP_NHC', 'P024 Main DW with NIKEHEALTHCHECKER', 'MSSQLSERVER', 'R4WAPPP024', 'LOCAL_HOST', 'NIKEHEALTHCHECKER', 'TEST', getdate());
+INSERT INTO DQ_DB_CONNECTION_TAB VALUES ('DW_BI_NIKE_EDW_LZ', 'BI Main DW with NIKE_EDW_LZ', 'MSSQLSERVER', 'R4WSQLP-BI', 'R4WSQLP-BI\BI', 'NIKE_EDW_LZ', 'TEST', getdate());
+
+-- ====================
+-- DQ_RULE_TC_CASE_TAB
+-- ====================
+
+INSERT INTO DQ_RULE_TC_CASE_TAB VALUES (1, 'USER_PROFILE_SIZE', 'Verify table size of user profile', 'NIKEHEALTHCHECKER', 'DQ_USER_PROFILE_TAB', 10, 10.0, 10.0, 'HIGH', 'TEST', getdate());
+INSERT INTO DQ_RULE_TC_CASE_TAB VALUES (1, 'USER_ROLE_SIZE', 'Verify table size of user role', 'NIKEHEALTHCHECKER', 'DQ_USER_ROLE_TAB', 10, 10.0, 10.0, 'MEDIUM', 'TEST1', getdate());
+INSERT INTO DQ_RULE_TC_CASE_TAB VALUES (1, 'USER_ROLE_PERMISSION_SIZE', 'Verify table size of role permission', 'NIKEHEALTHCHECKER', 'DQ_USER_ROLE_PERMISSION_TAB', 10, 10.0, 10.0, 'LOW', 'TEST2', getdate());
+
+-- ================================
+-- DQ_RULE_TC_CASE_RUN_HISTORY_TAB
+-- ================================
+
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (1, 3, CONVERT(datetime, '2019/03/24 16:45:11', 120), CONVERT(datetime, '2019/03/24 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (1, 10, CONVERT(datetime, '2019/03/25 16:45:11', 120), CONVERT(datetime, '2019/03/25 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (1, 5, CONVERT(datetime, '2019/03/26 16:45:11', 120), CONVERT(datetime, '2019/03/26 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (1, 6, CONVERT(datetime, '2019/03/27 16:45:11', 120), CONVERT(datetime, '2019/03/27 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (1, 11, CONVERT(datetime, '2019/03/28 16:45:11', 120), CONVERT(datetime, '2019/03/28 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (1, 7, CONVERT(datetime, '2019/03/29 16:45:11', 120), CONVERT(datetime, '2019/03/29 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (1, 12, CONVERT(datetime, '2019/03/30 16:45:11', 120), CONVERT(datetime, '2019/03/30 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (1, 3, CONVERT(datetime, '2019/03/31 16:45:11', 120), CONVERT(datetime, '2019/03/31 16:45:11', 120));
+
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (2, 16, CONVERT(datetime, '2019/03/24 16:45:11', 120), CONVERT(datetime, '2019/03/24 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (2, 20, CONVERT(datetime, '2019/03/25 16:45:11', 120), CONVERT(datetime, '2019/03/25 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (2, 3, CONVERT(datetime, '2019/03/26 16:45:11', 120), CONVERT(datetime, '2019/03/26 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (2, 5, CONVERT(datetime, '2019/03/27 16:45:11', 120), CONVERT(datetime, '2019/03/27 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (2, 4, CONVERT(datetime, '2019/03/28 16:45:11', 120), CONVERT(datetime, '2019/03/28 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (2, 10, CONVERT(datetime, '2019/03/29 16:45:11', 120), CONVERT(datetime, '2019/03/29 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (2, 3, CONVERT(datetime, '2019/03/30 16:45:11', 120), CONVERT(datetime, '2019/03/30 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (2, 6, CONVERT(datetime, '2019/03/31 16:45:11', 120), CONVERT(datetime, '2019/03/31 16:45:11', 120));
+
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (3, 5, CONVERT(datetime, '2019/03/24 16:45:11', 120), CONVERT(datetime, '2019/03/24 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (3, 18, CONVERT(datetime, '2019/03/25 16:45:11', 120), CONVERT(datetime, '2019/03/25 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (3, 6, CONVERT(datetime, '2019/03/26 16:45:11', 120), CONVERT(datetime, '2019/03/26 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (3, 3, CONVERT(datetime, '2019/03/27 16:45:11', 120), CONVERT(datetime, '2019/03/27 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (3, 3, CONVERT(datetime, '2019/03/28 16:45:11', 120), CONVERT(datetime, '2019/03/28 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (3, 9, CONVERT(datetime, '2019/03/29 16:45:11', 120), CONVERT(datetime, '2019/03/29 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (3, 10, CONVERT(datetime, '2019/03/30 16:45:11', 120), CONVERT(datetime, '2019/03/30 16:45:11', 120));
+INSERT INTO DQ_RULE_TC_CASE_RUN_HISTORY_TAB VALUES (3, 3, CONVERT(datetime, '2019/03/31 16:45:11', 120), CONVERT(datetime, '2019/03/31 16:45:11', 120));
+
+-- ====================
+-- DQ_RULE_QS_CASE_TAB
+-- ====================
+
+INSERT INTO DQ_RULE_QS_CASE_TAB VALUES (1, 'DQ_RULE_TC_CASE_RUN_HISTORY_TAB_START_DATE', 'Verify run start date on today for rule tc case run history', 'select 1 as EXEC_RESULT from DQ_RULE_TC_CASE_RUN_HISTORY_TAB where RULE_CASE_ID = 1 having CONVERT(nvarchar(30), max(RULE_CASE_RUN_START_DATE), 102) = CONVERT(nvarchar(30), getdate(), 102)', 'HIGH', 'TEST', getdate());
+
+-- ================================
+-- DQ_RULE_QS_CASE_RUN_HISTORY_TAB
+-- ================================
+
+INSERT INTO DQ_RULE_QS_CASE_RUN_HISTORY_TAB VALUES (1, 1, CONVERT(datetime, '2019/04/03 16:45:11', 120), CONVERT(datetime, '2019/04/03 16:45:11', 120));
+
+-- =======================
+-- DQ_RULE_R21FC_CASE_TAB
+-- =======================
+
+INSERT INTO DQ_RULE_R21FC_CASE_TAB VALUES (1, 'Data Latency Check on Revenue/Demand', 'BARBARA GOU', 'Sales', 'Verify run transaction date on today for sales day level data', 'SALES_DAY_LEVEL_FACT', 'TRAN_DT', '', 'TEST', getdate());
+INSERT INTO DQ_RULE_R21FC_CASE_TAB VALUES (1, 'Data Latency Check on Traffic', 'BARBARA GOU', 'Sales', 'Verify run traffic and transaction date on today for store', 'STORE_TRAFFIC_AND_TRANS_COUNT_FACT', 'DT', '', 'TEST', getdate());
+INSERT INTO DQ_RULE_R21FC_CASE_TAB VALUES (3, 'MAX_INV_DATE-R4WSQLP_BI_LZ_BZ_DGTL_INVY', 'MARLIO LIU', 'Digital', 'Verify inv date on today for LZ_BZ_DGTL_INVY in BI', 'LZ_BZ_DGTL_INVY', 'CRT_DT', '', 'TEST', getdate());
+
+-- ===================================
+-- DQ_RULE_R21FC_CASE_RUN_HISTORY_TAB
+-- ===================================
+
+INSERT INTO DQ_RULE_R21FC_CASE_RUN_HISTORY_TAB VALUES (1, 'PASSED', '2019-04-05 14:04:55', 2, 0, CONVERT(datetime, '2019/04/05 16:45:11', 120), CONVERT(datetime, '2019/04/05 16:45:11', 120));
+INSERT INTO DQ_RULE_R21FC_CASE_RUN_HISTORY_TAB VALUES (2, 'PASSED', '2019-04-05 14:04:55', 2, 0, CONVERT(datetime, '2019/04/05 16:45:11', 120), CONVERT(datetime, '2019/04/05 16:45:11', 120));
+INSERT INTO DQ_RULE_R21FC_CASE_RUN_HISTORY_TAB VALUES (3, 'PASSED', '2019-04-05 14:04:55', 2, 0, CONVERT(datetime, '2019/04/05 16:45:11', 120), CONVERT(datetime, '2019/04/05 16:45:11', 120));
+
+-- =======================
+-- DQ_RULE_R33MC_CASE_TAB
+-- =======================
+
+INSERT INTO DQ_RULE_R33MC_CASE_TAB VALUES ('Recent 30 days Revenue/Demand value comparison against history', 'BARBARA GOU', 'Sales', 'Verify run transaction date on today for sales day level data between before 2 months', 1, 'SALES_DAY_LEVEL_FACT', 'TOT_NET_SALES_RTL_AMT_PLUS_VAT', 'TRAN_DT > (getdate() - 60) and TRAN_DT <= (getdate() - 30)', 1, 'SALES_DAY_LEVEL_FACT', 'TOT_NET_SALES_RTL_AMT_PLUS_VAT', 'TRAN_DT > (getdate() - 30)', 'TEST', getdate());
+INSERT INTO DQ_RULE_R33MC_CASE_TAB VALUES ('Recent 30 days traffic value comparison against history', 'BARBARA GOU', 'Sales', 'Verify run traffic and transaction date on today for store between before 2 months', 1, 'STORE_TRAFFIC_AND_TRANS_COUNT_FACT', 'TRAFFIC_COUNT', 'DT > (getdate() - 60) and DT <= (getdate() - 30)', 1, 'STORE_TRAFFIC_AND_TRANS_COUNT_FACT', 'TRAFFIC_COUNT', 'DT > (getdate() - 30)', 'TEST', getdate());
+INSERT INTO DQ_RULE_R33MC_CASE_TAB VALUES ('Recent 30 days sales quantity comparison against history', 'MARLIO LIU', 'Digital', 'Verify sales quantity for day level between before 2 months', 3, 'LZ_BZ_SALES_DAY_LEVEL', 'TOT_NET_SALES_UNT_QTY', 'CRT_TMSTMP > (getdate() - 60) and CRT_TMSTMP <= (getdate() - 30)', 3, 'LZ_BZ_SALES_DAY_LEVEL', 'TOT_NET_SALES_UNT_QTY', 'CRT_TMSTMP > (getdate() - 30)', 'TEST', getdate());
+
+-- ===================================
+-- DQ_RULE_R33MC_CASE_RUN_HISTORY_TAB
+-- ===================================
+
+INSERT INTO DQ_RULE_R33MC_CASE_RUN_HISTORY_TAB VALUES (1, 'PASSED', 80, 100, 20, 50, CONVERT(datetime, '2019/04/07 16:45:11', 120), CONVERT(datetime, '2019/04/07 16:45:11', 120));
+INSERT INTO DQ_RULE_R33MC_CASE_RUN_HISTORY_TAB VALUES (2, 'PASSED', 100, 60, 40, 50, CONVERT(datetime, '2019/04/07 16:45:11', 120), CONVERT(datetime, '2019/04/07 16:45:11', 120));
+INSERT INTO DQ_RULE_R33MC_CASE_RUN_HISTORY_TAB VALUES (3, 'PASSED', 70, 100, 30, 50, CONVERT(datetime, '2019/04/07 16:45:11', 120), CONVERT(datetime, '2019/04/07 16:45:11', 120));

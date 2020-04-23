@@ -1,0 +1,9 @@
+
+table.dataTable th.select-checkbox::before {
+	display: none;
+}
+
+.ui-button-text {
+	font-weight: bold;
+	color: black;
+}

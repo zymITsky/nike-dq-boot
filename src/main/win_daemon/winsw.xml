@@ -1,0 +1,9 @@
+<service>
+	<id>nike-dq-boot</id>
+	<name>nike-dq-boot</name>
+	<description>Spring Boot Application as a Window Service.</description>
+	<env name="C:\\Users\\MLIU22\\_Jitao\\daily_task\\201903181402_Barbara_DQ\\deployment" value="%BASE%"/>
+	<executable>java</executable>
+	<arguments>-Xmx1024m -jar "%BASE%\nikedq.war"</arguments>
+	<logmode>rotate</logmode>
+</service>

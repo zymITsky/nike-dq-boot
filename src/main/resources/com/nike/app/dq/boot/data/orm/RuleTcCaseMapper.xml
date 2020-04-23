@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nike.app.dq.boot.data.mapper.RuleTcCaseMapper">
+	<sql id="ruleTcCaseColumns">
+		<![CDATA[
+			r.RULE_CASE_ID as RULE_CASE_ID, 
+			c.CONNECTION_ID as C_CONNECTION_ID, 
+			c.CONNECTION_NAME as C_CONNECTION_NAME, 
+			c.CONNECTION_DESCRIPTION as C_CONNECTION_DESCRIPTION, 
+			c.CONNECTION_SERVER_TYPE as C_CONNECTION_SERVER_TYPE, 
+			c.CONNECTION_SERVER_HOST as C_CONNECTION_SERVER_HOST, 
+			c.CONNECTION_DB_LINK as C_CONNECTION_DB_LINK, 
+			c.CONNECTION_CREATED_BY as C_CONNECTION_CREATED_BY, 
+			c.CONNECTION_CREATED_DATETIME as C_CONNECTION_CREATED_DATETIME, 
+			r.RULE_CASE_NAME as RULE_CASE_NAME, 
+			r.RULE_CASE_DESCRIPTION as RULE_CASE_DESCRIPTION, 
+			r.RULE_CASE_TARGET_DB as RULE_CASE_TARGET_DB, 
+			r.RULE_CASE_TARGET_TABLE as RULE_CASE_TARGET_TABLE, 
+			r.RULE_CASE_ORIG_TAB_SIZE as RULE_CASE_ORIG_TAB_SIZE, 
+			r.RULE_CASE_ROWS_GAP_GT as RULE_CASE_ROWS_GAP_GT, 
+			r.RULE_CASE_ROWS_GAP_LT as RULE_CASE_ROWS_GAP_LT, 
+			r.RULE_CASE_SEVERITY as RULE_CASE_SEVERITY, 
+			r.RULE_CASE_CREATED_BY as RULE_CASE_CREATED_BY, 
+			r.RULE_CASE_CREATED_DATETIME as RULE_CASE_CREATED_DATETIME, 
+			rh.RULE_CASE_RUN_ID as RULE_CASE_RUN_ID, 
+			rh.RULE_CASE_RUN_ROWS as RULE_CASE_RUN_ROWS, 
+			rh.RULE_CASE_RUN_START_DATE as RULE_CASE_RUN_START_DATE, 
+			rh.RULE_CASE_RUN_END_DATE as RULE_CASE_RUN_END_DATE 
+		]]>
+	</sql>
+	<resultMap id="detailedRuleTcCaseResultMap" type="RuleTcCase">
+		<id property="ruleCaseId" column="RULE_CASE_ID" />
+		<result property="ruleCaseName" column="RULE_CASE_NAME" />
+		<result property="ruleCaseDescription" column="RULE_CASE_DESCRIPTION" />
+		<result property="ruleCaseTargetDb" column="RULE_CASE_TARGET_DB" />
+		<result property="ruleCaseTargetTable" column="RULE_CASE_TARGET_TABLE" />
+		<result property="ruleCaseOriginalTableSize" column="RULE_CASE_ORIG_TAB_SIZE" />
+		<result property="ruleCaseRowsGapGt" column="RULE_CASE_ROWS_GAP_GT" />
+		<result property="ruleCaseRowsGapLt" column="RULE_CASE_ROWS_GAP_LT" />
+		<result property="ruleCaseSeverity" column="RULE_CASE_SEVERITY" />
+		<result property="ruleCaseCreatedBy" column="RULE_CASE_CREATED_BY" />
+		<result property="ruleCaseCreatedDatetime" column="RULE_CASE_CREATED_DATETIME" />
+		<association property="connection" resultMap="com.nike.app.dq.boot.data.mapper.DsConnectionMapper.detailedDsConnectionResultMap" columnPrefix="C_" />
+		<collection property="runHistories" ofType="RuleTcCaseRunHistory" javaType="ArrayList" column="RULE_CASE_ID">
+			<id property="ruleCaseRunId" column="RULE_CASE_RUN_ID" />
+			<result property="ruleCaseRunRows" column="RULE_CASE_RUN_ROWS" />
+			<result property="ruleCaseRunStartDate" column="RULE_CASE_RUN_START_DATE" />
+			<result property="ruleCaseRunEndDate" column="RULE_CASE_RUN_END_DATE" />
+		</collection>
+	</resultMap>
+	<select id="findAll" resultMap="detailedRuleTcCaseResultMap">
+		<![CDATA[ select ]]>
+			<include refid="ruleTcCaseColumns" />
+		<![CDATA[
+			from DQ_RULE_TC_CASE_TAB r 
+			inner join DQ_DB_CONNECTION_TAB c on c.CONNECTION_ID = r.CONNECTION_ID 
+			inner join DQ_RULE_TC_CASE_RUN_HISTORY_TAB rh ON r.RULE_CASE_ID = rh.RULE_CASE_ID
+			order by r.RULE_CASE_ID, rh.RULE_CASE_RUN_ID;
+		]]>
+	</select>
+	<select id="findById" resultMap="detailedRuleTcCaseResultMap">
+		<![CDATA[ select ]]>
+			<include refid="ruleTcCaseColumns" />
+		<![CDATA[
+			from DQ_RULE_TC_CASE_TAB r 
+			inner join DQ_DB_CONNECTION_TAB c on c.CONNECTION_ID = r.CONNECTION_ID 
+			left join DQ_RULE_TC_CASE_RUN_HISTORY_TAB rh ON r.RULE_CASE_ID = rh.RULE_CASE_ID
+			where r.RULE_CASE_ID = #{id};
+		]]>
+	</select>
+	<select id="findByRuleCaseName" resultMap="detailedRuleTcCaseResultMap">
+		<![CDATA[ select ]]>
+			<include refid="ruleTcCaseColumns" />
+		<![CDATA[
+			from DQ_RULE_TC_CASE_TAB r 
+			inner join DQ_DB_CONNECTION_TAB c on c.CONNECTION_ID = r.CONNECTION_ID 
+			left join DQ_RULE_TC_CASE_RUN_HISTORY_TAB rh ON r.RULE_CASE_ID = rh.RULE_CASE_ID
+			where r.RULE_CASE_NAME = #{ruleCaseName};
+		]]>
+	</select>
+	<update id="updateOne">
+		<![CDATA[
+			update DQ_RULE_TC_CASE_TAB 
+			set RULE_CASE_DESCRIPTION = #{ruleCaseDescription}, 
+				RULE_CASE_ORIG_TAB_SIZE = #{ruleCaseOriginalTableSize}, 
+				RULE_CASE_ROWS_GAP_GT = #{ruleCaseRowsGapGt}, 
+				RULE_CASE_ROWS_GAP_LT = #{ruleCaseRowsGapLt}, 
+				RULE_CASE_SEVERITY = #{ruleCaseSeverity} 
+			where RULE_CASE_ID = #{id};
+		]]>
+	</update>
+	<insert id="insertOne">
+		<![CDATA[
+			insert into DQ_RULE_TC_CASE_TAB (CONNECTION_ID, RULE_CASE_NAME, RULE_CASE_DESCRIPTION, RULE_CASE_TARGET_DB, RULE_CASE_TARGET_TABLE, RULE_CASE_ORIG_TAB_SIZE, RULE_CASE_ROWS_GAP_GT, RULE_CASE_ROWS_GAP_LT, RULE_CASE_SEVERITY, RULE_CASE_CREATED_BY)
+			values (#{connectionId}, #{ruleCaseName}, #{ruleCaseDescription}, #{ruleCaseTargetDb}, #{ruleCaseTargetTable}, #{ruleCaseOriginalTableSize}, #{ruleCaseRowsGapGt}, #{ruleCaseRowsGapLt}, #{ruleCaseSeverity}, #{ruleCaseCreatedBy});
+		]]>
+	</insert>
+	<delete id="deleteByRuleCaseId">
+		<![CDATA[
+			delete from DQ_RULE_TC_CASE_TAB where RULE_CASE_ID = #{ruleCaseId};
+		]]>
+	</delete>
+	<delete id="deleteRunHistoryByCaseId">
+		<![CDATA[
+			delete from DQ_RULE_TC_CASE_RUN_HISTORY_TAB where RULE_CASE_ID = #{caseId};
+		]]>
+	</delete>
+	<sql id="tblRowCntColumns">
+		<![CDATA[ count(*) as ROWS_COUNT ]]>
+	</sql>
+	<resultMap id="detailedTblRowCntResultMap" type="TblRowCnt">
+		<result property="rowCount" column="ROWS_COUNT" />
+	</resultMap>
+	<select id="getTableRowCount" resultMap="detailedTblRowCntResultMap">
+		<![CDATA[ select ]]>
+			<include refid="tblRowCntColumns" />
+		<![CDATA[ from ${tableName} ]]>
+	</select>
+	<insert id="insertHistoryOne">
+		<![CDATA[ insert into DQ_RULE_TC_CASE_RUN_HISTORY_TAB (RULE_CASE_ID, RULE_CASE_RUN_ROWS, RULE_CASE_RUN_START_DATE, RULE_CASE_RUN_END_DATE) values (#{ruleCaseId} , #{ruleCaseRunRows}, #{ruleCaseRunStartDate}, #{ruleCaseRunEndDate}) ]]>
+	</insert>
+
+</mapper>

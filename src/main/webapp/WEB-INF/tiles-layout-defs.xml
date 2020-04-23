@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="webTemplateBasic" template="/jsp/template/tiles/TilesTemplateBasic.jsp">
+		<put-attribute name="BodyContent" value="BodyContent" />
+	</definition>
+	<definition name="webTemplateLogin" template="/jsp/template/tiles/TilesTemplateLogin.jsp">
+		<put-attribute name="PageTitle"   value="PageTitle" />
+		<put-attribute name="BodyContent" value="BodyContent" />
+	</definition>
+	<definition name="webTemplateDashboard" template="/jsp/template/tiles/TilesTemplateDashboard.jsp">
+		<put-attribute name="PageTitle"  value="PageTitle" />
+		<put-attribute name="PageCss"    value="PageCss" />
+		<put-attribute name="TopMenuBar" value="TopMenuBar" />
+		<put-attribute name="PageHeader" value="PageHeader" />
+		<put-attribute name="PageBody"   value="PageBody" />
+		<put-attribute name="PageJs"     value="PageJs" />
+	</definition>
+	<definition name="webTemplateWorkflow" template="/jsp/template/tiles/TilesTemplateWorkflow.jsp">
+		<put-attribute name="PageTitle"        value="PageTitle" />
+		<put-attribute name="PageCss"          value="PageCss" />
+		<put-attribute name="TopMenuBar"       value="TopMenuBar" />
+		<put-attribute name="PageHeader"       value="PageHeader" />
+		<put-attribute name="WorkflowTabPanel" value="WorkflowTabPanel" />
+		<put-attribute name="PageBody"         value="PageBody" />
+		<put-attribute name="PageJs"           value="PageJs" />
+	</definition>
+	<definition name="GLOBAL_SYSTEM_ERROR_PAGE" extends="webTemplateBasic">
+		<put-attribute name="BodyContent" value="/jsp/default/error/systemErrorBodyContent.jsp" />
+	</definition>
+	<definition name="SYSTEM_LEFT_MENU_BAR_FRAGMENT_PAGE" extends="webTemplateBasic">
+		<put-attribute name="BodyContent" value="/jsp/default/common/commonLeftNavigationMenuBar.jsp" />
+	</definition>
+	<definition name="USER_LOGIN_FORM_PAGE" extends="webTemplateLogin">
+		<put-attribute name="PageTitle"   value="NIKE.COM.GC | DQ - User Login" />
+		<put-attribute name="BodyContent" value="/jsp/default/login/userLoginFormBodyContent.jsp" />
+	</definition>
+	<definition name="USER_DASHBOARD_HOME_PAGE" extends="webTemplateDashboard">
+		<put-attribute name="PageTitle"  value="NIKE.COM.GC | DQ - User Dashboard" />
+		<put-attribute name="PageCss"    value="/jsp/default/dashboard/userDashboardPageCss.jsp" />
+		<put-attribute name="TopMenuBar" value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader" value="/jsp/default/dashboard/userDashboardPageHeader.jsp" />
+		<put-attribute name="PageBody"   value="/jsp/default/dashboard/userDashboardPageBody.jsp" />
+		<put-attribute name="PageJs"     value="/jsp/default/dashboard/userDashboardPageJs.jsp" />
+	</definition>
+	<definition name="RULE_TC_LIST_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DQ - TablleCountRule - List" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule/ruleTcPageCss01.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule/ruleTcPageHeader01.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule/ruleTcWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule/ruleTcPageBody01.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule/ruleTcPageJs01.jsp" />
+	</definition>
+	<definition name="RULE_TC_NEW_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DQ - TablleCountRule - New" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule/ruleTcPageCss02.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule/ruleTcPageHeader02.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule/ruleTcWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule/ruleTcPageBody02.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule/ruleTcPageJs02.jsp" />
+	</definition>
+	<definition name="RULE_TC_VIEW_DETAIL_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DQ - TablleCountRule - View" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule/ruleTcPageCss03.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule/ruleTcPageHeader03.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule/ruleTcWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule/ruleTcPageBody03.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule/ruleTcPageJs03.jsp" />
+	</definition>
+	<definition name="RULE_QS_LIST_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DQ - QueryStringRule - List" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule/ruleQsPageCss01.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule/ruleQsPageHeader01.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule/ruleQsWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule/ruleQsPageBody01.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule/ruleQsPageJs01.jsp" />
+	</definition>
+	<definition name="RULE_QS_NEW_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DQ - QueryStringRule - New" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule/ruleQsPageCss02.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule/ruleQsPageHeader02.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule/ruleQsWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule/ruleQsPageBody02.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule/ruleQsPageJs02.jsp" />
+	</definition>
+	<definition name="RULE_R21FC_LIST_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DQ - R21FC - List" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule1/ruleR21fcPageCss01.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule1/ruleR21fcPageHeader01.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule1/ruleR21fcWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule1/ruleR21fcPageBody01.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule1/ruleR21fcPageJs01.jsp" />
+	</definition>
+	<definition name="RULE_R21FC_NEW_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DQ - R21FC - New" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule1/ruleR21fcPageCss02.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule1/ruleR21fcPageHeader02.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule1/ruleR21fcWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule1/ruleR21fcPageBody02.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule1/ruleR21fcPageJs02.jsp" />
+	</definition>
+	<definition name="RULE_R33MC_LIST_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DQ - R33MC - List" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule1/ruleR33mcPageCss01.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule1/ruleR33mcPageHeader01.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule1/ruleR33mcWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule1/ruleR33mcPageBody01.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule1/ruleR33mcPageJs01.jsp" />
+	</definition>
+	<definition name="RULE_R33MC_NEW_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DQ - R33MC - New" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule1/ruleR33mcPageCss02.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule1/ruleR33mcPageHeader02.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule1/ruleR33mcWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule1/ruleR33mcPageBody02.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule1/ruleR33mcPageJs02.jsp" />
+	</definition>
+	<definition name="SCHEDULE_LIST_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | SCHEDULE - List" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule1/schedulePageCss01.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule1/schedulePageHeader01.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule1/scheduleWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule1/schedulePageBody01.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule1/schedulePageJs01.jsp" />
+	</definition>
+	<definition name="DATASOURCE_LIST_FORM_PAGE" extends="webTemplateWorkflow">
+		<put-attribute name="PageTitle"        value="NIKE.COM.GC | DATASOURCE - List" />
+		<put-attribute name="PageCss"          value="/jsp/default/rule1/datasourcePageCss01.jsp" />
+		<put-attribute name="TopMenuBar"       value="/jsp/default/common/commonTopMenuBar.jsp" />
+		<put-attribute name="PageHeader"       value="/jsp/default/rule1/datasourcePageHeader01.jsp" />
+		<put-attribute name="WorkflowTabPanel" value="/jsp/default/rule1/datasourceWorkflowTabPanel.jsp" />
+		<put-attribute name="PageBody"         value="/jsp/default/rule1/datasourcePageBody01.jsp" />
+		<put-attribute name="PageJs"           value="/jsp/default/rule1/datasourcePageJs01.jsp" />
+	</definition>
+</tiles-definitions>

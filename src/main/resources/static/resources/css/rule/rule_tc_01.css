@@ -1,0 +1,8 @@
+
+#cj-tc-last-history, #cj-tc-connection, #cj-tc-createdby, #cj-tc-severity {
+	min-height: 165px;
+}
+
+table.dataTable th.select-checkbox::before {
+	display: none;
+}

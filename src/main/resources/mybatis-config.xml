@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="autoMappingBehavior" value="PARTIAL" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="120" />
+		<setting name="safeRowBoundsEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="false" />
+		<setting name="localCacheScope" value="SESSION" />
+		<setting name="jdbcTypeForNull" value="OTHER" />
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="UserProfile" type="com.nike.app.dq.boot.data.entity.UserProfile" />
+		<typeAlias alias="UserRole" type="com.nike.app.dq.boot.data.entity.UserRole" />
+		<typeAlias alias="RolePermission" type="com.nike.app.dq.boot.data.entity.RolePermission" />
+		<typeAlias alias="DsConnection" type="com.nike.app.dq.boot.data.entity.DsConnection" />
+		<typeAlias alias="RuleTcCase" type="com.nike.app.dq.boot.data.entity.RuleTcCase" />
+		<typeAlias alias="RuleTcCaseRunHistory" type="com.nike.app.dq.boot.data.entity.RuleTcCaseRunHistory" />
+		<typeAlias alias="TblRowCnt" type="com.nike.app.dq.boot.data.entity.TblRowCnt" />
+		<typeAlias alias="RuleQsCase" type="com.nike.app.dq.boot.data.entity.RuleQsCase" />
+		<typeAlias alias="RuleQsCaseRunHistory" type="com.nike.app.dq.boot.data.entity.RuleQsCaseRunHistory" />
+		<typeAlias alias="QryStrExecResult" type="com.nike.app.dq.boot.data.entity.QryStrExecResult" />
+		<typeAlias alias="RuleR21fcCase" type="com.nike.app.dq.boot.data.entity.RuleR21fcCase" />
+		<typeAlias alias="RuleR21fcCaseRunHistory" type="com.nike.app.dq.boot.data.entity.RuleR21fcCaseRunHistory" />
+		<typeAlias alias="R21fcExecResult" type="com.nike.app.dq.boot.data.entity.R21fcExecResult" />
+		<typeAlias alias="RuleR33mcCase" type="com.nike.app.dq.boot.data.entity.RuleR33mcCase" />
+		<typeAlias alias="RuleR33mcCaseRunHistory" type="com.nike.app.dq.boot.data.entity.RuleR33mcCaseRunHistory" />
+		<typeAlias alias="R33mcExecResult" type="com.nike.app.dq.boot.data.entity.R33mcExecResult" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/nike/app/dq/boot/data/orm/UserProfileMapper.xml" />
+		<mapper resource="com/nike/app/dq/boot/data/orm/DsConnectionMapper.xml" />
+		<mapper resource="com/nike/app/dq/boot/data/orm/RuleTcCaseMapper.xml" />
+		<mapper resource="com/nike/app/dq/boot/data/orm/RuleQsCaseMapper.xml" />
+		<mapper resource="com/nike/app/dq/boot/data/orm/RuleR21fcCaseMapper.xml" />
+		<mapper resource="com/nike/app/dq/boot/data/orm/RuleR33mcCaseMapper.xml" />
+	</mappers>
+</configuration>
